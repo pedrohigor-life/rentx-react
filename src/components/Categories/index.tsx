@@ -1,19 +1,32 @@
+import { useEffect, useState } from "react";
 import { Container } from "./styles";
+import { api } from "../../services/api";
+
+interface Category {
+  id: number;
+  name: string;
+  description: string;
+  created_at: Date;
+}
 
 export function Categories() {
+  const [categories, setCategories] = useState<Category[]>([]);
+
+  useEffect(() => {
+    api.get("categories").then((response) => {
+      setCategories(response.data);
+    });
+  }, []);
+
   return (
     <Container>
-      <div>
-        <h2>SUV</h2>
-      </div>
-
-      <div>
-        <h2>Hatch</h2>
-      </div>
-
-      <div>
-        <h2>4x4</h2>
-      </div>
+      {categories.map((category) => {
+        return (
+          <div>
+            <h2>{category.name}</h2>
+          </div>
+        );
+      })}
     </Container>
   );
 }
