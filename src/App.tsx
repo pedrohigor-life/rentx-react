@@ -1,11 +1,11 @@
 import { Dashboard } from "./components/Dashboard";
-import { Header } from "./components/Header";
+import { Title } from "./components/Title";
 import { GlobalStyle } from "./styles/global";
 
 function App() {
   return (
     <>
-      <Header />
+      <Title />
       <Dashboard />
       <GlobalStyle />
     </>
